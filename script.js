@@ -124,8 +124,8 @@ responsiveTimer()
 let timer = setInterval(responsiveTimer,1000);
 let revert = document.getElementById('revert')
 revert.addEventListener('click', function(){
-    responsiveTimer()
-    timer = setInterval(responsiveTimer,1000)
+    responsiveTimer();
+    timer = setInterval(responsiveTimer,1000);
     
 })
 

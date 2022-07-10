@@ -38,7 +38,6 @@
 
 .container{
     position: relative;
-    background-color: aqua;
     width: 80%;
     height: 852px;
     margin: auto;
@@ -46,7 +45,7 @@
 }
 
 .quote{
-    width: 50%;
+    width: 30%;
     color: black;
     font-family: 'Space Mono', monospace;
     text-align: center;
@@ -59,6 +58,7 @@
 
 .quote span{
     float: right;
+    margin-top: 10px;
 }
 
 
@@ -73,3 +73,59 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+/* buttons */
+
+.buttons{
+    text-align: center;
+    width: 100px;
+    padding: 0 10px;
+    font-size: 30px;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    
+}
+
+.buttons button{
+    padding: 10px 5px;
+    margin-top: 30px;
+    background-color: rgb(207, 247, 247);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#insert, span{
+    text-transform: uppercase;
+    text-align: left;
+}
+
+/*
+@media only screen and (max-width: 800px){
+    .timer button{
+        font-size: 25px;
+    }
+
+    .container{
+        float: left;
+    }
+
+    .clock{
+        float: left;
+    }
+
+    .buttons{
+        position: absolute;
+        top: 100px;
+        left: 630px;
+        z-index: 2;
+
+    }
+}
+
+*/

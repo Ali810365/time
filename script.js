@@ -1,9 +1,14 @@
+const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let currentDayofWeek = document.getElementById('weekday');
+let presentMonth = document.getElementById('month');
+let currentDay = document.getElementById('day');
+let clock = document.getElementById('timer')
+
 
 function responsiveTimer(){
-    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    const day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     let date = new Date(); 
-    let hours = date.getHours(15);
+    let hours = date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
     let dayOfWeek = day[date.getDay()];
@@ -11,30 +16,36 @@ function responsiveTimer(){
     let year = date.getFullYear();
     let previousYear = date.getFullYear() -1;
 
-    morning(hours);
+    
+    
+    quoteOfMoment(hours);
     setBackground(hours)
-
+    
     let amOrPm = formatTime(hours); //switch between am and pm
     hours = formatHours(hours); //convert our time time to 12 hour clock
     
 
     //lets add 0's when our values are less then 10
-    hours = fixZero(hours);
+
+    hours = fixZero(hours)
     minutes = fixZero(minutes);
     seconds = fixZero(seconds);
     
+    console.log('actual hours = ' + hours )
     
-
-    document.getElementById('weekday').innerHTML = dayOfWeek;
-    document.getElementById('month').innerHTML = currentMonth;
-    document.getElementById('day').innerHTML = date.getDate();
-    document.getElementById('timer').innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' ' + amOrPm;
+    
+    
+    currentDayofWeek.innerHTML = dayOfWeek;
+    presentMonth.innerHTML = currentMonth;
+    currentDay.innerHTML = date.getDate();
+    clock.innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' ' + amOrPm;
     
     //footer
     document.getElementById('footer').innerHTML = 'Copyright © ' + previousYear + '-' +  year;
 
-
+    
 }
+
 
 function fixZero(time){
     if(time < 10){
@@ -73,11 +84,13 @@ function setBackground(time){
     
 }
 
-function morning(time){
+function quoteOfMoment(time){
     let fill = document.getElementById('insert');
     if(time >= 5 && time < 12 ){ //morning
         fill.innerHTML = "Everyone has highs and lows that they have to learn from, but every morning I start off with a good head on my shoulders, saying to myself, 'It's going to be a good day!'."
+        fill.style.color = 'black'
         fill.nextElementSibling.innerHTML = "-Lindsay Lohan"
+        fill.nextElementSibling.style.color = 'black'
     }else if (time >= 12 && time < 18){ //Afternoon
         fill.innerHTML = "You must try to generate happiness within yourself. If you aren't happy in one place, chances are you won't be happy anyplace."
         fill.style.color = 'white'
@@ -97,8 +110,139 @@ function morning(time){
     }
     
 }
+
+/*
+function toMorning(time){
+    time = 5;
+    return time
+    
+}
+*/
+
+
 responsiveTimer()
-setInterval(responsiveTimer,1000)
+let timer = setInterval(responsiveTimer,1000);
+let revert = document.getElementById('revert')
+revert.addEventListener('click', function(){
+    timer = setInterval(responsiveTimer,1000)
+})
+
+
+
+
+//Buttons
+
+let morningBtn = document.getElementById('morningBtn');
+let afternoonBtn = document.getElementById('afternoonBtn');
+let eveningBtn = document.getElementById('eveningBtn');
+let nightBtn = document.getElementById('nightBtn');
+
+morningBtn.addEventListener('click', function(){
+    clearInterval(timer)
+    let date = new Date(); 
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    
+    hours = 6;
+    minutes = 0;
+    seconds = 0;
+    quoteOfMoment(hours);
+    setBackground(hours)
+    
+    let amOrPm = formatTime(hours); //switch between am and pm
+    hours = formatHours(hours); //convert our time time to 12 hour clock
+    
+
+    //lets add 0's when our values are less then 10
+
+    hours = fixZero(hours);
+    minutes = fixZero(minutes);
+    seconds = fixZero(seconds);
+    clock.innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' '+ amOrPm;
+
+})
+
+afternoonBtn.addEventListener('click', function(){
+    clearInterval(timer)
+    let date = new Date(); 
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    
+    hours = 12;
+    minutes = 0;
+    seconds = 0;
+
+    quoteOfMoment(hours);
+    setBackground(hours)
+    
+    let amOrPm = formatTime(hours); //switch between am and pm
+    hours = formatHours(hours); //convert our time time to 12 hour clock
+    
+
+    //lets add 0's when our values are less then 10
+
+    hours = fixZero(hours);
+    minutes = fixZero(minutes);
+    seconds = fixZero(seconds);
+    clock.innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' '+ amOrPm;
+
+})
+
+eveningBtn.addEventListener('click', function(){
+    clearInterval(timer)
+    let date = new Date(); 
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    
+    hours = 18;
+    minutes = 0;
+    seconds = 0;
+
+    quoteOfMoment(hours);
+    setBackground(hours)
+    
+    let amOrPm = formatTime(hours); //switch between am and pm
+    hours = formatHours(hours); //convert our time time to 12 hour clock
+    
+
+    //lets add 0's when our values are less then 10
+
+    hours = fixZero(hours);
+    minutes = fixZero(minutes);
+    seconds = fixZero(seconds);
+    clock.innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' ' + amOrPm;
+
+})
+
+nightBtn.addEventListener('click', function(){
+    clearInterval(timer)
+    let date = new Date(); 
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    
+    hours = 24;
+    minutes = 0;
+    seconds = 0;
+
+    quoteOfMoment(hours);
+    setBackground(hours)
+    
+    let amOrPm = formatTime(hours); //switch between am and pm
+    hours = formatHours(hours); //convert our time time to 12 hour clock
+    
+
+    //lets add 0's when our values are less then 10
+
+    hours = fixZero(hours);
+    minutes = fixZero(minutes);
+    seconds = fixZero(seconds);
+    clock.innerHTML = hours + ' : ' + minutes + ' : ' + seconds + ' ' + amOrPm;
+
+})
 
 
 
